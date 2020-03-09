@@ -1,0 +1,15 @@
+---
+
+stages:
+  - test
+
+test:
+  stage: test
+  image: node:dubnium-alpine
+  artifacts:
+    expire_in: 5 days
+    paths: [build/]
+  script:
+    - yarn install
+    - yarn run ganache &
+    - yarn run test
